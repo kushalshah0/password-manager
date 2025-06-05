@@ -1,12 +1,35 @@
-# React + Vite
+# Password Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The Password Manager is a secure application designed to help users store, manage, and generate strong passwords for their online accounts. It provides a user-friendly interface and robust encryption to ensure that your sensitive information remains safe.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Secure Storage**: All passwords are encrypted using advanced encryption algorithms.
+- **Password Generation**: Generate strong, random passwords with customizable options.
+- **User-Friendly Interface**: Easy to navigate and manage your passwords.
+- **Cross-Platform Support**: Available on multiple platforms (Windows, macOS, Linux, iOS, Android).
+- **Backup and Restore**: Easily back up your password database and restore it when needed.
+- **Search Functionality**: Quickly find passwords using the search feature.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Usage
+
+1. **Create an Account**: Upon first launch, create a master account to secure your password database.
+2. **Add Passwords**: Use the "Add Password" feature to store new credentials.
+3. **Generate Passwords**: Use the password generator to create strong passwords.
+4. **Search for Passwords**: Utilize the search bar to quickly find stored passwords.
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

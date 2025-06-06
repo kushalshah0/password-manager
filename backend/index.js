@@ -2,11 +2,20 @@ const express = require('express');
 require('dotenv').config();
 const app = express();
 const port = 3000;
+const cors = require('cors');
+const mongoose = require('mongoose');
+const userRoute = require('./routes/userRoute');
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+app.use(cors());
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Server running at ${port}`);
+app.use('/api/user',userRoute);
+
+mongoose.connect(process.env.MONGO_URI).then(() => {
+  console.log('Connected to MongoDB');
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+}).catch(err => {
+  console.error('Error connecting to MongoDB:', err);
 });

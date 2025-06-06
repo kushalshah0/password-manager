@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const User = require('../models/userModel.js');
 const bcrypt = require('bcryptjs');
 module.exports = {
@@ -45,9 +46,8 @@ module.exports = {
                 return res.status(500).json({ success: false, message: 'Token generation failed' });
             }
             newUser.refreshToken = token;
-            newUser.save({validateBeforeSave: true});
-            res.cookie('token', token, { httpOnly: true });
-            res.status(201).json({ success: true, message: 'User registered successfully' });
+            await newUser.save({ validateBeforeSave: true });
+            res.status(201).json({ success: true, message: 'User registered successfully', token });
         } catch (error) {
             res.status(500).json({ message: 'Internal server error' });
         }

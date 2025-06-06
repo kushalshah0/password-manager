@@ -15,6 +15,13 @@ module.exports = {
             if (!isPasswordValid) {
                 return res.status(400).json({ success: false, message: 'Invalid password' });
             }
+            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            if (!token) {
+                return res.status(500).json({ success: false, message: 'Token generation failed' });
+            }
+            user.refreshToken = token;
+            await user.save({ validateBeforeSave: true });
+            res.cookie('token', token, { httpOnly: true });
             res.status(200).json({ success: true, message: 'Login successful', user });
         } catch (error) {
             res.status(500).json({ message: 'Internal server error' });
@@ -37,6 +44,8 @@ module.exports = {
             if (!token) {
                 return res.status(500).json({ success: false, message: 'Token generation failed' });
             }
+            newUser.refreshToken = token;
+            newUser.save({validateBeforeSave: true});
             res.cookie('token', token, { httpOnly: true });
             res.status(201).json({ success: true, message: 'User registered successfully' });
         } catch (error) {

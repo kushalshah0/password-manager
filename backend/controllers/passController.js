@@ -8,7 +8,7 @@ module.exports = {
                     res.status(200).json({ success: true, data: passes });
                 })
                 .catch(err => {
-                    res.status(500).json({ success: false, message: 'Error fetching passes', error: err });
+                    res.status(500).json({ success: false, message: 'Error fetching passwords', error: err });
                 });
         } catch (error) {
             res.status(500).json({ success: false, message: 'Internal server error' });
@@ -42,12 +42,12 @@ module.exports = {
             Pass.findByIdAndDelete(passId)
                 .then(result => {
                     if (!result) {
-                        return res.status(404).json({ success: false, message: 'Pass not found' });
+                        return res.status(404).json({ success: false, message: 'Password not found' });
                     }
-                    res.status(200).json({ success: true, message: 'Pass deleted successfully' });
+                    res.status(200).json({ success: true, message: 'Password deleted successfully' });
                 })
                 .catch(err => {
-                    res.status(500).json({ success: false, message: 'Error deleting pass', error: err });
+                    res.status(500).json({ success: false, message: 'Error deleting password', error: err });
                 });
         } catch (error) {
             res.status(500).json({ success: false, message: 'Internal server error' });
@@ -63,12 +63,12 @@ module.exports = {
             await Pass.findByIdAndUpdate(passId, { title, email, password }, { new: true })
                 .then(updatedPass => {
                     if (!updatedPass) {
-                        return res.status(404).json({ success: false, message: 'Pass not found' });
+                        return res.status(404).json({ success: false, message: 'Password not found' });
                     }
                     res.status(200).json({ success: true, data: updatedPass });
                 })
                 .catch(err => {
-                    res.status(500).json({ success: false, message: 'Error updating pass', error: err });
+                    res.status(500).json({ success: false, message: 'Error updating password', error: err });
                 });
         } catch (error) {
             res.status(500).json({ success: false, message: 'Internal server error' });

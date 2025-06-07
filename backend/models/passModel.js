@@ -5,6 +5,10 @@ const passSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    title: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -20,3 +24,4 @@ const passSchema = new mongoose.Schema({
 });
 
 const Pass = mongoose.model('Pass', passSchema);
+module.exports = Pass;

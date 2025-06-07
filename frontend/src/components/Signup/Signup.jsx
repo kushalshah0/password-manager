@@ -1,25 +1,34 @@
-import React from 'react'
+import React, { useContext } from 'react';
 import { styles } from '../../styles/style';
+import { StatesContext } from '../../context/states';
 
 const Signup = () => {
+  const { view, setView, users, setUsers, formState, setFormState, errors, setErrors } = useContext(StatesContext);
+
+  const handleInputChange = (e) => {
+    setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    console.log(formState);
+  }
+
   const handleSignup = (e) => {
-      e.preventDefault();
-      const { name = '', email = '', password = '', passwordConfirm = '' } = formState;
-      let newErrors = {};
-      if (password !== passwordConfirm) {
-        newErrors.passwordConfirm = 'Passwords do not match.';
-      }
-      const emailLower = email.toLowerCase();
-      const newUser = {
-        name,
-        email: emailLower,
-        password
-      };
-      setUsers((prev) => ({ ...prev, [emailLower]: newUser }));
-      setCurrentUserEmail(emailLower);
-      setView('dashboard');
-      setFormState({});
+    e.preventDefault();
+    const { name = '', email = '', password = '', passwordConfirm = '' } = formState;
+    if (password !== passwordConfirm) {
+      newErrors.passwordConfirm = 'Passwords do not match.';
     }
+    const emailLower = email.toLowerCase();
+    const newUser = {
+      name,
+      email: emailLower,
+      password
+    };
+    setUsers((prev) => ({ ...prev, [emailLower]: newUser }));
+    console.log('New user created:', newUser);
+    setView('dashboard');
+    setFormState({});
+  }
+  
+
   return (
     <div>
       <form onSubmit={handleSignup} aria-label="Sign up form" style={styles.form} noValidate>

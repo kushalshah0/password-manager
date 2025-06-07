@@ -1,9 +1,9 @@
 const Pass = require('../models/passModel');
 module.exports = {
-    getPass: (req, res) => {
+    getPass: async (req, res) => {
         try {
             const userId = req.user._id;
-            Pass.find({ author: userId })
+            await Pass.find({ author: userId })
                 .then(passes => {
                     res.status(200).json({ success: true, data: passes });
                 })
@@ -14,7 +14,7 @@ module.exports = {
             res.status(500).json({ success: false, message: 'Internal server error' });
         }
     },
-    postPass: (req, res) => {
+    postPass: async (req, res) => {
         try {
             const { title, email, password } = req.body;
             if (!title || !email || !password) {
@@ -25,7 +25,7 @@ module.exports = {
             if (!newPass) {
                 return res.status(400).json({ success: false, message: 'Password creation failed' });
             }
-            newPass.save()
+            await newPass.save()
                 .then(pass => {
                     res.status(201).json({ success: true, data: pass });
                 })
@@ -36,10 +36,10 @@ module.exports = {
             res.status(500).json({ success: false, message: 'Internal server error' });
         }
     },
-    deletePass: (req, res) => {
+    deletePass: async (req, res) => {
         try {
             const passId = req.params.id;
-            Pass.findByIdAndDelete(passId)
+            await Pass.findByIdAndDelete(passId)
                 .then(result => {
                     if (!result) {
                         return res.status(404).json({ success: false, message: 'Password not found' });

@@ -11,12 +11,12 @@ export const styles = {
     padding: '0 1rem'
   },
   container: {
+    backgroundColor: '#fff',
     maxWidth: '1200px',
     width: '100%',
     padding: '0 1.5rem',
-    margin: '0 auto',
     flexGrow: 1,
-    marginTop: '72px', // header height
+    margin: '2rem 0 0 0',
   },
   header: {
     position: 'fixed',
@@ -45,6 +45,7 @@ export const styles = {
     gap: '0.5rem'
   },
   navButton: (active) => ({
+    '-webkit-tap-highlight-color': 'transparent',
     background: 'none',
     border: 'none',
     fontWeight: 600,
@@ -57,16 +58,13 @@ export const styles = {
     boxShadow: active ? '0 0 8px rgba(59,130,246,0.3)' : 'none',
   }),
   form: {
-    backgroundColor: '#ffffff',
     padding: '2rem 2rem 2.5rem',
     borderRadius: '0.75rem',
     boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
     display: 'flex',
     flexDirection: 'column',
-    gap: '1.5rem',
-    marginTop: '3rem',
-    maxWidth: '500px',
-    width: '100%',
+    gap: '1.25rem',
+    margin: '5rem 0 0 -0.5rem',
   },
   formHeading: {
     fontWeight: 700,
@@ -91,6 +89,7 @@ export const styles = {
     fontFamily: 'inherit',
     color: '#374151',
     outlineOffset: '2px',
+    boxSizing: 'border-box',
   },
   inputFocus: {
     borderColor: '#3b82f6',

@@ -45,7 +45,7 @@ export const styles = {
     gap: '0.5rem'
   },
   navButton: (active) => ({
-    '-webkit-tap-highlight-color': 'transparent',
+    WebkitTapHighlightColor: 'transparent',
     background: 'none',
     border: 'none',
     fontWeight: 600,
@@ -58,6 +58,7 @@ export const styles = {
     boxShadow: active ? '0 0 8px rgba(59,130,246,0.3)' : 'none',
   }),
   form: {
+    width: '85%',
     padding: '2rem 2rem 2.5rem',
     borderRadius: '0.75rem',
     boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
@@ -73,10 +74,10 @@ export const styles = {
     color: '#111827',
   },
   label: {
-    fontWeight: 600,
+    fontWeight: 700,
     fontSize: '0.9rem',
     color: '#6b7280',
-    marginBottom: '0.25rem',
+    marginBottom: '0.3rem',
     display: 'block',
   },
   input: {
@@ -171,8 +172,7 @@ export const styles = {
   errorText: {
     color: '#dc2626',
     fontSize: '0.875rem',
-    marginTop: '-1rem',
-    marginBottom: '1rem',
+    marginTop: '-0.75rem',
   },
   footer: {
     textAlign: 'center',

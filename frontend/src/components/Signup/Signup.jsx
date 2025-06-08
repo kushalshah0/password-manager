@@ -6,15 +6,38 @@ const Signup = () => {
   const { view, setView, users, setUsers, formState, setFormState, errors, setErrors } = useContext(StatesContext);
 
   const handleInputChange = (e) => {
-    setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormState((prev) => {
+      const updatedForm = { ...prev, [name]: value };
+      if ((name === 'password' && updatedForm.passwordConfirm?.length > 0) ||
+        (name === 'passwordConfirm' && updatedForm.password?.length > 0)) {
+        if (updatedForm.password !== updatedForm.passwordConfirm) {
+          setErrors((prevErrors) => ({ ...prevErrors, passwordConfirm: 'Passwords do not match.' }));
+        } else {
+          setErrors((prevErrors) => {
+            const { passwordConfirm, ...rest } = prevErrors;
+            return rest;
+          });
+        }
+      } else {
+        setErrors({});
+      }
+      return updatedForm;
+    });
     console.log(formState);
   }
+
 
   const handleSignup = (e) => {
     e.preventDefault();
     const { name = '', email = '', password = '', passwordConfirm = '' } = formState;
+    let newErrors = {};
     if (password !== passwordConfirm) {
       newErrors.passwordConfirm = 'Passwords do not match.';
+    }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
     }
     const emailLower = email.toLowerCase();
     const newUser = {
@@ -23,11 +46,10 @@ const Signup = () => {
       password
     };
     setUsers((prev) => ({ ...prev, [emailLower]: newUser }));
-    console.log('New user created:', newUser);
     setView('dashboard');
     setFormState({});
   }
-  
+
 
   return (
     <div>
@@ -35,7 +57,7 @@ const Signup = () => {
         <h2 style={styles.formHeading}>Sign Up</h2>
 
         <label htmlFor="signup-username" style={styles.label}>
-          Username
+          Name
         </label>
         <input
           id="signup-username"

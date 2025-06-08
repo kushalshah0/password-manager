@@ -8,7 +8,11 @@ const Dashboard = () => {
       <section aria-label="Dashboard" style={styles.dashboard}>
         <h1 style={styles.greeting}>Hello !</h1>
         <div aria-label="Stored passwords" role="list" style={styles.passwordsList}>
-          </div>
+          <PasswordCard />
+          <PasswordCard />
+          <PasswordCard />
+          <PasswordCard />
+        </div>
       </section>
     </div>
   )

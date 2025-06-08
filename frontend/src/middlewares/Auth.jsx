@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const Auth = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate()
+  console.log(token);
 
-export default Auth
+  useEffect(() => {
+    if (!token) {
+      navigate("/login")
+    }
+  }, [token]);
+  return <Outlet />;
+};
+
+export default Auth;

@@ -1,12 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
-import { styles } from '../../styles/style';
+import { styles } from '../../styles/style'
 
 const PasswordCard = () => {
     const [hovered, setHovered] = useState(false);
     return (
-        <div
-            tabIndex={0}
+        <div tabIndex={0}
             role="listitem"
             style={{
                 ...styles.passwordCard,
@@ -16,11 +15,9 @@ const PasswordCard = () => {
             onMouseLeave={() => setHovered(false)}>
 
             <div style={styles.passwordInfo}>
-                <div style={styles.site}>{site}</div>
-                <div style={styles.usernameText}>{username}</div>
-                <div style={styles.passwordText} aria-label="Password">
-                    {password}
-                </div>
+                <div style={styles.site}>Title</div>
+                <div style={styles.usernameText}>Email</div>
+                <div style={styles.passwordText} aria-label="Password">Password</div>
             </div>
         </div>
     )

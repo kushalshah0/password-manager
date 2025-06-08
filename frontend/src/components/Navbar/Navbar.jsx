@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { styles } from '../../styles/style'
 import Login from '../Login/Login'
 import Signup from '../Signup/Signup'
@@ -7,18 +7,10 @@ import Dashboard from '../Dashboard/Dashboard'
 import { StatesContext } from '../../context/states.jsx'
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const { view, setView, users, setUsers, formState, setFormState, errors, setErrors } = useContext(StatesContext);
   const handleNavClick = (targetView) => {
     setView(targetView);
     setFormState({});
-    if (targetView === 'login') {
-      navigate('/login');
-    } else if (targetView === 'signup') { 
-      navigate('/signup');
-    } else if (targetView === 'dashboard') {
-      navigate('/dashboard');
-    }
   }
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   return (
@@ -29,6 +21,7 @@ const Navbar = () => {
             PassManager
           </div>
           <nav aria-label="Main Navigation" style={styles.nav}>
+            <Link to="/login" style={styles.navLink}>
             <button
               type="button"
               style={styles.navButton(view === 'login')}
@@ -37,6 +30,8 @@ const Navbar = () => {
             >
               Login
             </button>
+            </Link>
+            <Link to="/signup" style={styles.navLink}>
             <button
               type="button"
               style={styles.navButton(view === 'signup')}
@@ -45,7 +40,9 @@ const Navbar = () => {
             >
               Sign Up
             </button>
+            </Link>
             {currentUser && (
+              <Link to="/dashboard" style={styles.navLink}>
               <button
                 type="button"
                 style={styles.navButton(view === 'dashboard')}
@@ -54,8 +51,10 @@ const Navbar = () => {
               >
                 Dashboard
               </button>
+              </Link>
             )}
             {currentUser && (
+              <Link to="/login" style={styles.navLink}>
               <button
                 type="button"
                 style={{
@@ -68,6 +67,7 @@ const Navbar = () => {
               >
                 Logout
               </button>
+              </Link>
             )}
           </nav>
         </header>

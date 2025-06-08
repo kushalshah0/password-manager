@@ -9,7 +9,7 @@ import Signup from './components/Signup/Signup';
 function App() {
   const router = createBrowserRouter([
     {
-      path: '/', element: <Dashboard />
+      path: '/dashboard', element: <Dashboard />
     },
     {
       path: '/login', element: <Login />

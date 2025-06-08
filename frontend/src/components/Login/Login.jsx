@@ -1,9 +1,7 @@
-import React from 'react'
-import { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { styles } from '../../styles/style'
 import axios from 'axios';
 import { StatesContext } from '../../context/states';
-import Navbar from '../Navbar/Navbar';
 
 const Login = () => {
   const { view, setView, users, setUsers, formState, setFormState, errors, setErrors } = useContext(StatesContext);
@@ -11,11 +9,6 @@ const Login = () => {
 
   const handleInputChange = (e) => {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
-
-  const handleNavClick = (targetView) => {
-    setView(targetView);
-    setFormState({});
   }
 
   const handleLogin = (e) => {

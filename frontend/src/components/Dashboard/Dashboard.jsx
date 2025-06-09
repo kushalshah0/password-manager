@@ -11,10 +11,6 @@ const Dashboard = () => {
           <PasswordCard />
           <PasswordCard />
           <PasswordCard />
-          <PasswordCard />
-          <PasswordCard />
-          <PasswordCard />
-          <PasswordCard />
         </div>
       </section>
   )

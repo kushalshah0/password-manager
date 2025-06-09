@@ -143,10 +143,6 @@ const Signup = () => {
         <button
           type="submit"
           style={styles.submitButton}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2563eb')}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#3b82f6')}
-          onFocus={(e) => (e.currentTarget.style.backgroundColor = '#2563eb')}
-          onBlur={(e) => (e.currentTarget.style.backgroundColor = '#3b82f6')}
         >
           Create Account
         </button>

@@ -97,6 +97,7 @@ export const styles = {
     boxShadow: '0 0 5px #3b82f6',
   },
   submitButton: {
+    WebkitTapHighlightColor: 'transparent',
     backgroundColor: '#000',
     color: '#fff',
     fontWeight: 700,

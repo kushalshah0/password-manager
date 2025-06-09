@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <div>
       <section aria-label="Dashboard" style={styles.dashboard}>
-        <h1 style={styles.greeting}>Hello !</h1>
+        <h1 style={styles.greeting}>Hello Kushal!</h1>
         <div aria-label="Stored passwords" role="list" style={styles.passwordsList}>
           <PasswordCard />
           <PasswordCard />

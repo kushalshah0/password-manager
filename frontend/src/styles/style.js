@@ -128,10 +128,12 @@ export const styles = {
     userSelect: 'none',
   },
   passwordsList: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
+    marginTop: '1.25rem', // mt-5
+    display: 'grid',
+    gridTemplateColumns: '1fr', // default 1 column
+    gap: '1.25rem', // gap-5
   },
+
   passwordCard: {
     backgroundColor: '#f9fafb',
     borderRadius: '0.75rem',
@@ -142,6 +144,7 @@ export const styles = {
     alignItems: 'center',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     cursor: 'default',
+    maxWidth: '300px',
   },
   passwordCardHover: {
     boxShadow: '0 6px 15px rgba(0, 131, 255, 0.15)',

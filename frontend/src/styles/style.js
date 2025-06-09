@@ -23,7 +23,7 @@ export const styles = {
     top: 0,
     left: 0,
     right: 0,
-    height: '72px',
+    height: '65px',
     backgroundColor: '#ffffff',
     borderBottom: '1px solid #e5e7eb',
     display: 'flex',
@@ -117,21 +117,21 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '2rem',
-    maxWidth: '700px',
-    width: '100%',
   },
   greeting: {
     fontWeight: 800,
-    fontSize: '2.5rem',
+    fontSize: '2rem',
     color: '#111827',
-    marginBottom: '1rem',
+    marginBottom: '-.7rem',
     userSelect: 'none',
   },
   passwordsList: {
-    marginTop: '1.25rem', // mt-5
-    display: 'grid',
-    gridTemplateColumns: '1fr', // default 1 column
-    gap: '1.25rem', // gap-5
+    marginTop: '1.25rem',
+    display: 'flex',
+    flexWrap: 'wrap',
+    gridTemplateColumns: '1fr',
+    gap: '1.25rem',
+    marginBottom: '2rem',
   },
 
   passwordCard: {
@@ -144,7 +144,7 @@ export const styles = {
     alignItems: 'center',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     cursor: 'default',
-    maxWidth: '300px',
+    maxWidth: '260px',
   },
   passwordCardHover: {
     boxShadow: '0 6px 15px rgba(0, 131, 255, 0.15)',

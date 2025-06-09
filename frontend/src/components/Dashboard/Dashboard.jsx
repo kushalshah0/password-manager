@@ -4,7 +4,6 @@ import PasswordCard from '../PasswordCard/PasswordCard'
 
 const Dashboard = () => {
   return (
-    <div>
       <section aria-label="Dashboard" style={styles.dashboard}>
         <h1 style={styles.greeting}>Hello Kushal!</h1>
         <div aria-label="Stored passwords" role="list" style={styles.passwordsList}>
@@ -14,7 +13,6 @@ const Dashboard = () => {
           <PasswordCard />
         </div>
       </section>
-    </div>
   )
 }
 

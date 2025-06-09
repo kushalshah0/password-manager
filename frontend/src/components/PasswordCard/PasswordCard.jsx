@@ -5,6 +5,15 @@ import { FaEye, FaEyeSlash, FaEdit, FaTrash } from 'react-icons/fa';
 const PasswordCard = ({ title, email, password }) => {
     const [hovered, setHovered] = useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [updatePass, setUpdatePass] = useState({
+        id: "",
+        bool: false,
+    });
+
+    const [newPassdData, setNewPassData] = useState({
+        title: "",
+        password: "",
+    });
 
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible);
@@ -101,44 +110,104 @@ const PasswordCard = ({ title, email, password }) => {
                     width: '100%',
                 }}
             >
-                <button
-                    type="button"
-                    aria-label="Edit password card"
-                    style={{
-                        WebkitTapHighlightColor: 'transparent',
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        color: '#6b7280',
-                        fontSize: '1.2rem',
-                        padding: 0,
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}
-                >
-                    <FaEdit />
-                </button>
-                <button
-                    type="button"
-                    aria-label="Delete password card"
-                    style={{
-                        WebkitTapHighlightColor: 'transparent',
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        color: '#dc2626',
-                        fontSize: '1.2rem',
-                        padding: 0,
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}
-                >
-                    <FaTrash />
-                </button>
+                {!updatePass.bool ? (
+                    <>
+                        <button
+                            type="button"
+                            aria-label="Edit password card"
+                            style={{
+                                WebkitTapHighlightColor: 'transparent',
+                                background: 'none',
+                                border: 'none',
+                                cursor: 'pointer',
+                                color: '#6b7280',
+                                fontSize: '1.2rem',
+                                padding: 0,
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                            onClick={() => {
+                                setUpdatePass({
+                                    id: "",
+                                    bool: true,
+                                });
+                                setNewPassData({
+                                    title: title,
+                                    password: password,
+                                });
+                            }}
+                        >
+                            <FaEdit />
+                        </button>
+                        <button
+                            type="button"
+                            aria-label="Delete password card"
+                            style={{
+                                WebkitTapHighlightColor: 'transparent',
+                                background: 'none',
+                                border: 'none',
+                                cursor: 'pointer',
+                                color: '#dc2626',
+                                fontSize: '1.2rem',
+                                padding: 0,
+                                display: 'flex',
+                                alignItems: 'center',
+                                transition: 'all 200ms ease-in -out',
+                            }}
+                        >
+                            <FaTrash />
+                        </button>
+                    </>
+                ) : (
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <button
+                            type="button"
+                            aria-label="Cancel password card"
+                            style={{
+                                WebkitTapHighlightColor: 'transparent',
+                                background: '#fff',
+                                border: '1px solid #d1d5db',
+                                cursor: 'pointer',
+                                color: '#000',
+                                fontSize: '0.8rem',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '0.75rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                            onClick={() => {
+                                setUpdatePass({
+                                    id: "",
+                                    bool: false,
+                                });
+                            }}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="button"
+                            aria-label="Update password card"
+                            style={{
+                                WebkitTapHighlightColor: 'transparent',
+                                background: '#000',
+                                border: 'none',
+                                cursor: 'pointer',
+                                color: '#fff',
+                                fontSize: '0.8rem',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '0.75rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                            onClick={() => { }}
+                        >
+                            Update
+                        </button>
+                    </div>
+                )}
             </div>
-        </div>
+        </div >
     );
 };
 
 export default PasswordCard;
-

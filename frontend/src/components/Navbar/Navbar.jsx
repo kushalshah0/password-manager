@@ -12,6 +12,11 @@ const Navbar = () => {
     setView(targetView);
     setFormState({});
   }
+  const handleLogout = () => {
+    setView('login');
+    setFormState({});
+    setErrors({});
+  }
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   return (
     <>
@@ -21,52 +26,44 @@ const Navbar = () => {
             PassManager
           </div>
           <nav aria-label="Main Navigation" style={styles.nav}>
-            <Link to="/login" style={styles.navLink}>
-            <button
-              type="button"
-              style={styles.navButton(view === 'login')}
-              aria-current={view === 'login' ? 'page' : undefined}
-              onClick={() => handleNavClick('login')}
-            >
-              Login
-            </button>
-            </Link>
-            <Link to="/signup" style={styles.navLink}>
-            <button
-              type="button"
-              style={styles.navButton(view === 'signup')}
-              aria-current={view === 'signup' ? 'page' : undefined}
-              onClick={() => handleNavClick('signup')}
-            >
-              Sign Up
-            </button>
-            </Link>
-            {currentUser && (
-              <Link to="/dashboard" style={styles.navLink}>
-              <button
-                type="button"
-                style={styles.navButton(view === 'dashboard')}
-                aria-current={view === 'dashboard' ? 'page' : undefined}
-                onClick={() => handleNavClick('dashboard')}
-              >
-                Dashboard
-              </button>
-              </Link>
+            {(view === 'login' || view === 'signup') && (
+              <>
+                <Link to="/login">
+                  <button
+                    type="button"
+                    style={styles.navButton(view === 'login')}
+                    aria-current={view === 'login' ? 'page' : undefined}
+                    onClick={() => handleNavClick('login')}
+                  >
+                    Login
+                  </button>
+                </Link>
+                <Link to="/signup">
+                  <button
+                    type="button"
+                    style={styles.navButton(view === 'signup')}
+                    aria-current={view === 'signup' ? 'page' : undefined}
+                    onClick={() => handleNavClick('signup')}
+                  >
+                    Sign Up
+                  </button>
+                </Link>
+              </>
             )}
-            {currentUser && (
-              <Link to="/login" style={styles.navLink}>
-              <button
-                type="button"
-                style={{
-                  ...styles.navButton(false),
-                  color: '#dc2626',
-                  boxShadow: 'none',
-                  paddingLeft: '1rem',
-                }}
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
+            {view === 'dashboard' && (
+              <Link to="/login">
+                <button
+                  type="button"
+                  style={{
+                    ...styles.navButton(true),
+                    color: '#fff',
+                    boxShadow: 'none',
+                    padding: '0.55rem 1rem',
+                  }}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
               </Link>
             )}
           </nav>

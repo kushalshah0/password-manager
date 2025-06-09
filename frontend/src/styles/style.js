@@ -23,7 +23,7 @@ export const styles = {
     top: 0,
     left: 0,
     right: 0,
-    height: '65px',
+    height: '63px',
     backgroundColor: '#ffffff',
     borderBottom: '1px solid #e5e7eb',
     display: 'flex',
@@ -41,31 +41,31 @@ export const styles = {
     userSelect: 'none',
   },
   nav: {
+    WebkitTapHighlightColor: 'transparent',
     display: 'flex',
     gap: '0.5rem'
   },
   navButton: (active) => ({
-    WebkitTapHighlightColor: 'transparent',
-    background: 'none',
-    border: 'none',
+    background: active ? '#000' : 'none',
+    border: active ? '1px solid #fff' : '1px solid #000',
     fontWeight: 600,
     fontSize: '1rem',
-    color: active ? '#3b82f6' : '#6b7280',
+    color: active ? '#fff' : '#000',
     cursor: 'pointer',
     padding: '0.5rem 0.75rem',
     borderRadius: '0.75rem',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    boxShadow: active ? '0 0 8px rgba(59,130,246,0.3)' : 'none',
   }),
   form: {
     width: '85%',
     padding: '2rem 2rem 2.5rem',
     borderRadius: '0.75rem',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
     display: 'flex',
     flexDirection: 'column',
     gap: '1.25rem',
     margin: '5rem 0 0 -0.5rem',
+    border: '1px solid #e5e7eb',
   },
   formHeading: {
     fontWeight: 700,
@@ -97,7 +97,7 @@ export const styles = {
     boxShadow: '0 0 5px #3b82f6',
   },
   submitButton: {
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#000',
     color: '#fff',
     fontWeight: 700,
     fontSize: '1rem',
@@ -105,12 +105,10 @@ export const styles = {
     border: 'none',
     borderRadius: '0.75rem',
     cursor: 'pointer',
-    boxShadow: '0 4px 8px rgba(59,130,246,0.4)',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   },
   submitButtonHover: {
-    backgroundColor: '#2563eb',
-    boxShadow: '0 6px 12px rgba(37,99,235,0.6)',
+    boxShadow: '0 4px 80px rgba(0,0,0,0.4)',
   },
   dashboard: {
     marginTop: '3rem',
@@ -135,7 +133,8 @@ export const styles = {
   },
 
   passwordCard: {
-    backgroundColor: '#f9fafb',
+    border: '1px solid #d1d5db',
+    backgroundColor: '#fff',
     borderRadius: '0.75rem',
     boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
     padding: '1rem 1.5rem',
@@ -147,7 +146,7 @@ export const styles = {
     maxWidth: '260px',
   },
   passwordCardHover: {
-    boxShadow: '0 6px 15px rgba(0, 131, 255, 0.15)',
+    boxShadow: '0 6px 15px rgba(0,0,0,0.1)',
     transform: 'translateY(-2px)',
   },
   passwordInfo: {

@@ -47,6 +47,7 @@ const PasswordCard = ({ title, email, password }) => {
                     placeholder="Title"
                     style={{ ...styles.input, minWidth: 0 }}
                     aria-label="Site Title"
+                    disabled={!updatePass.bool}
                 />
                 <input
                     type="email"
@@ -54,7 +55,8 @@ const PasswordCard = ({ title, email, password }) => {
                     placeholder="Email"
                     style={{ ...styles.input, minWidth: 0 }}
                     aria-label="Email"
-                />
+                    disabled={!updatePass.bool}
+                    />
                 <div
                     style={{
                         position: 'relative',
@@ -75,6 +77,7 @@ const PasswordCard = ({ title, email, password }) => {
                             minWidth: 0,
                         }}
                         aria-label="Password"
+                        disabled={!updatePass.bool}
                     />
                     <button
                         type="button"
@@ -120,7 +123,7 @@ const PasswordCard = ({ title, email, password }) => {
                                 background: 'none',
                                 border: 'none',
                                 cursor: 'pointer',
-                                color: '#6b7280',
+                                color: '#000',
                                 fontSize: '1.2rem',
                                 padding: 0,
                                 display: 'flex',
@@ -147,7 +150,7 @@ const PasswordCard = ({ title, email, password }) => {
                                 background: 'none',
                                 border: 'none',
                                 cursor: 'pointer',
-                                color: '#dc2626',
+                                color: '#000',
                                 fontSize: '1.2rem',
                                 padding: 0,
                                 display: 'flex',

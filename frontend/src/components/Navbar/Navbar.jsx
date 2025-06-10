@@ -7,16 +7,23 @@ import Dashboard from '../Dashboard/Dashboard'
 import { StatesContext } from '../../context/states.jsx'
 
 const Navbar = () => {
-  const { view, setView, users, setUsers, formState, setFormState, errors, setErrors } = useContext(StatesContext);
+  const { view, setView, user, setUser, formState, setFormState, errors, setErrors, showAddPassword, setShowAddPassword } = useContext(StatesContext);
+
+  const handleAddClick = () => {
+    setShowAddPassword(!showAddPassword);
+  };
+
   const handleNavClick = (targetView) => {
     setView(targetView);
     setFormState({});
   }
+
   const handleLogout = () => {
     setView('login');
     setFormState({});
     setErrors({});
   }
+
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   return (
     <>
@@ -51,20 +58,42 @@ const Navbar = () => {
               </>
             )}
             {view === 'dashboard' && (
-              <Link to="/login">
-                <button
-                  type="button"
+              <>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                {!showAddPassword && (
+                  <button
                   style={{
-                    ...styles.navButton(true),
-                    color: '#fff',
-                    boxShadow: 'none',
-                    padding: '0.55rem 1rem',
+                    ...styles.addCardButton,
+                    background: '#fff',
+                    color: '#000',
+                    border: '1px solid #d1d5db',
+                    alignSelf: 'center',
+                    cursor: 'pointer',
+                    fontSize: '1.5rem',
+                    padding: '0.2rem 0.7rem',
                   }}
-                  onClick={handleLogout}
+                  onClick={handleAddClick}
+                  aria-label={showAddPassword ? "Hide Add Password Form" : "Show Add Password Form"}
                 >
-                  Logout
+                  +
                 </button>
-              </Link>
+              )}
+                <Link to="/login">
+                  <button
+                    type="button"
+                    style={{
+                      ...styles.navButton(true),
+                      color: '#fff',
+                      boxShadow: 'none',
+                      padding: '0.55rem 1rem',
+                    }}
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </Link>
+              </div>
+              </>
             )}
           </nav>
         </header>

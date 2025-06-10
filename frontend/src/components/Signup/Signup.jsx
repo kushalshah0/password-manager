@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styles } from '../../styles/style';
 import { StatesContext } from '../../context/states';
+import axios from 'axios';
 
 const Signup = () => {
-  const { view, setView, users, setUsers, formState, setFormState, errors, setErrors } = useContext(StatesContext);
-
+  const { URL, view, setView, user, setUser, formState, setFormState, errors, setErrors } = useContext(StatesContext);
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => {
@@ -29,7 +31,7 @@ const Signup = () => {
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     const { name = '', email = '', password = '', passwordConfirm = '' } = formState;
     let newErrors = {};
@@ -55,9 +57,28 @@ const Signup = () => {
       email: emailLower,
       password
     };
-    setUsers((prev) => ({ ...prev, [emailLower]: newUser }));
-    setView('dashboard');
-    setFormState({});
+    await axios.post(`${URL}/api/user/signup`, newUser, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (res.data.success) {
+          setView('login');
+          navigate('/login');
+          setFormState({});
+        }
+      })
+      .catch((error) => {
+        console.log(URL);
+        console.error('Error signing up user:', error);
+        setErrors(error.message);
+        if (error.response && error.response.status === 409) {
+          setErrors({ email: 'Email already exists.' });
+        } else {
+          setErrors({ general: 'An error occurred. Please try again later.' });
+        }
+      });
   }
 
 
@@ -66,24 +87,24 @@ const Signup = () => {
       <form onSubmit={handleSignup} aria-label="Sign up form" style={styles.form} noValidate>
         <h2 style={styles.formHeading}>Sign Up</h2>
 
-        <label htmlFor="signup-username" style={styles.label}>
+        <label htmlFor="signup-name" style={styles.label}>
           Name
         </label>
         <input
-          id="signup-username"
+          id="signup-name"
           type="text"
-          name="username"
-          value={formState.username || ''}
+          name="name"
+          value={formState.name || ''}
           onChange={handleInputChange}
-          autoComplete="username"
+          autoComplete="name"
           required
           style={styles.input}
-          aria-invalid={!!errors.username}
-          aria-describedby={errors.username ? 'signup-username-error' : undefined}
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? 'signup-name-error' : undefined}
         />
         {errors.username && (
-          <div id="signup-username-error" style={styles.errorText} role="alert">
-            {errors.username}
+          <div id="signup-name-error" style={styles.errorText} role="alert">
+            {errors.name}
           </div>
         )}
 

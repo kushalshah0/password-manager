@@ -14,7 +14,7 @@ export const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    
+
   },
   container: {
     backgroundColor: '#fff',
@@ -144,7 +144,7 @@ export const styles = {
     backgroundColor: '#fff',
     borderRadius: '0.75rem',
     boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-    padding: '1rem 1.5rem',
+    padding: '1.5rem 1.5rem',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -162,6 +162,18 @@ export const styles = {
     gap: '0.25rem',
     maxWidth: '70%',
     overflowWrap: 'anywhere',
+  },
+  cardBtn: {
+    WebkitTapHighlightColor: 'transparent',
+    background: '#fff',
+    border: '1px solid #d1d5db',
+    cursor: 'pointer',
+    color: '#000',
+    fontSize: '0.85rem',
+    padding: '0.5rem 1rem',
+    borderRadius: '0.75rem',
+    display: 'flex',
+    alignItems: 'center',
   },
   site: {
     fontWeight: 700,
@@ -189,4 +201,97 @@ export const styles = {
     fontSize: '0.85rem',
     color: '#9ca3af',
   },
+  addCard: {
+    border: '1px solid #d1d5db',
+    borderRadius: '0.75rem',
+    boxShadow: '0 1px 8px rgba(0,0,0,0.05)',
+    padding: '1.5rem 2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    justifyContent: 'flex-start',
+    maxWidth: '250px',
+    width: '100%',
+    backgroundColor: '#fff',
+  },
+  addCardH2: {
+    fontWeight: '700',
+    fontSize: '1.5rem',
+    margin: '0 0 1rem 0',
+    color: '#111827',
+    userSelect: 'none',
+  },
+  addCardLabel: {
+    fontWeight: '600',
+    color: '#374151',
+    fontSize: '0.9rem',
+    marginBottom: '0.4rem',
+    userSelect: 'none',
+    display: 'block',
+  },
+  addCardInput: {
+    fontFamily: 'inherit',
+    fontSize: '1rem',
+    padding: '0.65rem 0.75rem',
+    border: '1px solid #d1d5db',
+    borderRadius: '0.5rem',
+    color: '#374151',
+    transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
+    outlineOffset: '2px',
+    width: '100%',
+    boxSizing: 'border-box',
+  },
+  addCardInputFocus: {
+    borderColor: '#000',
+    boxShadow: '0 0 6px rgba(0,0,0,0.2)',
+    outline: 'none',
+  },
+  addCardButton: {
+    WebkitTapHighlightColor: 'transparent',
+    alignSelf: 'flex-end',
+    background: '#000',
+    color: '#fff',
+    fontWeight: '700',
+    fontSize: '0.85rem',
+    padding: '0.75rem 1.75rem',
+    border: 'none',
+    borderRadius: '0.5rem',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease, transform 0.2s ease',
+    userSelect: 'none',
+  },
+  addCardButtonHover: {
+    backgroundColor: '#111',
+    transform: 'scale(1.03)',
+    outline: 'none',
+  },
+  modalOverlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',  // soft, bright white with subtle opacity
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000,
+    backdropFilter: 'blur(7px)',                // gentle, elegant blur for depth but very light
+    WebkitBackdropFilter: 'blur(12px)',
+    transition: 'opacity 0.35s ease-in-out blur 0.35s ease-in-out',
+  },
+
+  modalContent: {
+    backgroundColor: '#ffffff',                   // pure white for crisp, clean card look
+    padding: '2.5rem 2rem',
+    borderRadius: '0.75rem',                      // subtle rounding per design guide
+    width: '90%',
+    maxWidth: '480px',
+    boxShadow: '0 12px 24px rgba(0, 0, 0, 0.06)', // very light shadow for gentle elevation
+    fontFamily: "'Inter', sans-serif",            // modern, elegant typeface
+    color: '#111827',                             // strong near-black for text clarity
+    transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease',
+  }
+
+
 };

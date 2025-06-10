@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import { styles } from '../../styles/style'
 import axios from 'axios';
 import { StatesContext } from '../../context/states';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const { view, setView, users, setUsers, formState, setFormState, errors, setErrors } = useContext(StatesContext);
-  const URL = import.meta.env.URL;
-
+  const { URL, view, setView, user, setUser, formState, setFormState, errors, setErrors } = useContext(StatesContext);
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
@@ -20,7 +20,7 @@ const Login = () => {
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const { email = '', password = '' } = formState;
     let newErrors = {};
@@ -38,6 +38,37 @@ const Login = () => {
       return;
     }
     const emailLower = email.toLowerCase();
+    const user = {
+      email: emailLower,
+      password
+    };
+    await axios.post(`${URL}/api/user/login`, user, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (res.data.success) {
+          console.log('User logged in successfully:', res.data.user);
+          localStorage.setItem('token', res.data.user.refreshToken);
+          localStorage.setItem('userid', res.data.user._id);
+          setUser({
+            name: res.data.user.name,
+          });
+          setView('dashboard');
+          navigate('/dashboard');          
+          setFormState({});
+        }
+      })
+      .catch((error) => {
+        console.error('Error signing up user:', error);
+        setErrors(error.message);
+        if (error.response && error.response.status === 409) {
+          setErrors({ email: 'Email already exists.' });
+        } else {
+          setErrors({ general: 'An error occurred. Please try again later.' });
+        }
+      });
     setView('dashboard');
     setFormState({});
   }

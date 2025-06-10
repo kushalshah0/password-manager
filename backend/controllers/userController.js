@@ -47,7 +47,7 @@ module.exports = {
             }
             newUser.refreshToken = token;
             await newUser.save({ validateBeforeSave: true });
-            res.status(201).json({ success: true, message: 'User registered successfully', token });
+            res.status(201).json({ success: true, message: 'User registered successfully', data: newUser });
         } catch (error) {
             res.status(500).json({ message: 'Internal server error' });
         }

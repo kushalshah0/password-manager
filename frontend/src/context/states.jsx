@@ -3,12 +3,14 @@ import { createContext, useContext, useState } from "react";
 export const StatesContext = createContext();
 
 export const StatesProvider = ({ children }) => {
+    const URL = import.meta.env.VITE_URL;
     const [view, setView] = useState('login');
-    const [users, setUsers] = useState({});
+    const [user, setUser] = useState({});
     const [formState, setFormState] = useState({});
     const [errors, setErrors] = useState({});
+    const [showAddPassword, setShowAddPassword] = useState(false);
     return (
-        <StatesContext.Provider value={{view, setView, users, setUsers, formState, setFormState, errors, setErrors}}>
+        <StatesContext.Provider value={{URL, view, setView, user, setUser, formState, setFormState, errors, setErrors, showAddPassword, setShowAddPassword}}>
             {children}
         </StatesContext.Provider>
     );

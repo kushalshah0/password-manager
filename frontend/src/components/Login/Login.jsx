@@ -42,35 +42,30 @@ const Login = () => {
       email: emailLower,
       password
     };
-    await axios.post(`${URL}/api/user/login`, user, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        if (res.data.success) {
-          console.log('User logged in successfully:', res.data.user);
-          localStorage.setItem('token', res.data.user.refreshToken);
-          localStorage.setItem('userid', res.data.user._id);
-          setUser({
-            name: res.data.user.name,
-          });
-          setView('dashboard');
-          navigate('/dashboard');          
-          setFormState({});
-        }
-      })
-      .catch((error) => {
-        console.error('Error signing up user:', error);
-        setErrors(error.message);
-        if (error.response && error.response.status === 409) {
-          setErrors({ email: 'Email already exists.' });
-        } else {
-          setErrors({ general: 'An error occurred. Please try again later.' });
-        }
+    try {
+      const res = await axios.post(`${URL}/api/user/login`, user, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-    setView('dashboard');
-    setFormState({});
+      if (res.data.success) {
+        console.log('User logged in successfully:', res.data.user);
+        localStorage.setItem('token', res.data.user.refreshToken);
+        localStorage.setItem('userid', res.data.user._id);
+        setUser({
+          name: res.data.user.name,
+        });
+        setView('dashboard');
+        navigate('/dashboard');
+        setFormState({});
+      }
+    } catch (error) {
+      if (error.response.data.success && error.response.status === 400) {
+        navigate('/login');
+      } else {
+        setErrors({ general: 'An error occurred. Please try again later.' });
+      }
+    }
   }
 
   return (

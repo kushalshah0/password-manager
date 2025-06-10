@@ -27,13 +27,23 @@ const Signup = () => {
     console.log(formState);
   }
 
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   const handleSignup = (e) => {
     e.preventDefault();
     const { name = '', email = '', password = '', passwordConfirm = '' } = formState;
     let newErrors = {};
-    if (password !== passwordConfirm) {
-      newErrors.passwordConfirm = 'Passwords do not match.';
+    if (!name.trim()) {
+      newErrors.name = 'Name is required.';
+    }
+    if (!email.trim()) {
+      newErrors.email = 'Email is required.';
+    }
+    if (!password) {
+      newErrors.password = 'Password is required.';
+    }
+    else if (!emailRegex.test(email)) {
+      newErrors.email = 'Invalid email format.';
     }
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -52,7 +62,7 @@ const Signup = () => {
 
 
   return (
-    <div>
+    <div style={styles.cusContainer}>
       <form onSubmit={handleSignup} aria-label="Sign up form" style={styles.form} noValidate>
         <h2 style={styles.formHeading}>Sign Up</h2>
 

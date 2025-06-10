@@ -10,6 +10,12 @@ export const styles = {
     justifyContent: 'flex-start',
     padding: '0 1rem'
   },
+  cusContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
+  },
   container: {
     backgroundColor: '#fff',
     maxWidth: '1200px',
@@ -57,14 +63,14 @@ export const styles = {
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   }),
   form: {
-    width: '85%',
+    width: '100%',
     padding: '2rem 2rem 2.5rem',
     borderRadius: '0.75rem',
     boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
     display: 'flex',
     flexDirection: 'column',
     gap: '1.25rem',
-    margin: '5rem 0 0 -0.5rem',
+    margin: '5rem 0 0 0',
     border: '1px solid #e5e7eb',
   },
   formHeading: {

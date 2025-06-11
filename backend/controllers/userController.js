@@ -53,11 +53,10 @@ module.exports = {
         }
     },
     logoutUser: async (req, res) => {
-        const userid = req.user._id;
-        console.log(userid)
+        const userId = req.body.userId ;
         try {
-            await userModal.findByIdAndUpdate(
-                { _id: userid },
+            await User.findByIdAndUpdate(
+                { _id: userId },
                 {
                     $set: {
                         refreshtoken: null,

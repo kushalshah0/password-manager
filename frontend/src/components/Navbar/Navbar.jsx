@@ -42,7 +42,6 @@ const Navbar = () => {
     }
   }
 
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));  
   return (
     <>
       <div style={styles.root}>

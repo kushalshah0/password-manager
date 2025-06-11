@@ -28,7 +28,6 @@ const Navbar = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      console.log('Logout response:', response.data);
       if (response.data.success) {
         localStorage.clear();
         setUser(null);
@@ -43,7 +42,7 @@ const Navbar = () => {
     }
   }
 
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));  
   return (
     <>
       <div style={styles.root}>

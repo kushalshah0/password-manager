@@ -49,7 +49,6 @@ const Login = () => {
         },
       });
       if (res.data.success) {
-        console.log('User logged in successfully:', res.data.user);
         localStorage.setItem('token', res.data.user.refreshToken);
         localStorage.setItem('userId', res.data.user._id);
         setUser({

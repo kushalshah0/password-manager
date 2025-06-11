@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar'
 import Dashboard from './components/Dashboard/Dashboard';
 import Login from './components/Login/Login'
 import Signup from './components/Signup/Signup';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <Toaster/>
     </>
   )
 }

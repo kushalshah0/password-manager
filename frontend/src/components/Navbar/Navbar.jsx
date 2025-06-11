@@ -6,6 +6,7 @@ import Signup from '../Signup/Signup'
 import Dashboard from '../Dashboard/Dashboard'
 import { StatesContext } from '../../context/states.jsx'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const Navbar = () => {
   const { URL, view, setView, user, setUser, formState, setFormState, errors, setErrors, showAddPassword, setShowAddPassword } = useContext(StatesContext);
@@ -34,6 +35,11 @@ const Navbar = () => {
         setView('login');
         setFormState({});
         setErrors({});
+        toast.success('Logout successful!', {
+          iconTheme: {
+            primary: '#000',
+          }
+        });
       } else {
         console.error('Logout failed:', response.data.message);
       }

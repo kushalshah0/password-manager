@@ -3,6 +3,7 @@ import { styles } from '../../styles/style'
 import axios from 'axios';
 import { StatesContext } from '../../context/states';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
   const { URL, view, setView, user, setUser, formState, setFormState, errors, setErrors } = useContext(StatesContext);
@@ -57,6 +58,11 @@ const Login = () => {
         setView('dashboard');
         navigate('/dashboard');
         setFormState({});
+        toast.success('Login successful!', {
+          iconTheme: {
+            primary: '#000',
+          },
+        });
       }
     } catch (error) {
       if (error.response.data.success && error.response.status === 400) {

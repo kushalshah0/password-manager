@@ -10,6 +10,9 @@ import { Toaster } from 'react-hot-toast';
 function App() {
   const router = createBrowserRouter([
     {
+      path: '/', element: <Navigate to="/login" replace />
+    },
+    {
       path: '/dashboard', element: <Dashboard />
     },
     {

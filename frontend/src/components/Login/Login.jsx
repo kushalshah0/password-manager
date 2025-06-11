@@ -51,7 +51,7 @@ const Login = () => {
       if (res.data.success) {
         console.log('User logged in successfully:', res.data.user);
         localStorage.setItem('token', res.data.user.refreshToken);
-        localStorage.setItem('userid', res.data.user._id);
+        localStorage.setItem('userId', res.data.user._id);
         setUser({
           name: res.data.user.name,
         });

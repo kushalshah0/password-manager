@@ -51,5 +51,28 @@ module.exports = {
         } catch (error) {
             res.status(500).json({ message: 'Internal server error' });
         }
-    }
+    },
+    logoutUser: async (req, res) => {
+        const userid = req.user._id;
+        console.log(userid)
+        try {
+            await userModal.findByIdAndUpdate(
+                { _id: userid },
+                {
+                    $set: {
+                        refreshtoken: null,
+                    },
+                }
+            );
+
+            return res.send({
+                success: true,
+                message: "User Logout Successfully ",
+            });
+        } catch (error) {
+            console.log(error);
+
+            return res.send({ success: false, message: error.message });
+        }
+    },
 };

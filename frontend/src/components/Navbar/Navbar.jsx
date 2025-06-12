@@ -35,11 +35,7 @@ const Navbar = () => {
         setView('login');
         setFormState({});
         setErrors({});
-        toast.success('Logout successful!', {
-          iconTheme: {
-            primary: '#000',
-          }
-        });
+        toast.success(response.data.message);
       } else {
         console.error('Logout failed:', response.data.message);
       }

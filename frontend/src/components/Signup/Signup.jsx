@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { styles } from '../../styles/style';
 import { StatesContext } from '../../context/states';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Signup = () => {
   const { URL, view, setView, user, setUser, formState, setFormState, errors, setErrors } = useContext(StatesContext);
@@ -64,17 +65,16 @@ const Signup = () => {
     })
       .then((res) => {
         if (res.data.success) {
+          toast.success(res.data.message);
           setView('login');
           navigate('/login');
           setFormState({});
         }
       })
       .catch((error) => {
-        console.log(URL);
-        console.error('Error signing up user:', error);
-        setErrors(error.message);
-        if (error.response && error.response.status === 409) {
-          setErrors({ email: 'Email already exists.' });
+        setErrors(error.response.data.message);
+        if (error.response.data.success === false) {
+          toast.error('Email already exists.');
         } else {
           setErrors({ general: 'An error occurred. Please try again later.' });
         }

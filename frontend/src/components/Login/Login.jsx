@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { styles } from '../../styles/style'
 import axios from 'axios';
 import { StatesContext } from '../../context/states';
@@ -63,15 +63,12 @@ const Login = () => {
         setView('dashboard');
         navigate('/dashboard');
         setFormState({});
-        toast.success('Login successful!', {
-          iconTheme: {
-            primary: '#000',
-          },
-        });
+        toast.success(res.data.message);
       }
     } catch (error) {
       toast.dismiss(loadingToastId);
-      if (error.response.data.success && error.response.status === 400) {
+      if (error.response.data.success === false) {
+        toast.error(error.response.data.message);
         navigate('/login');
       } else {
         setErrors({ general: 'An error occurred. Please try again later.' });

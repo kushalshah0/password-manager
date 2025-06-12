@@ -65,7 +65,7 @@ module.exports = {
                     if (!updatedPass) {
                         return res.status(404).json({ success: false, message: 'Password not found' });
                     }
-                    res.status(200).json({ success: true, data: updatedPass });
+                    res.status(200).json({ success: true, message: 'Updated', data: updatedPass });
                 })
                 .catch(err => {
                     res.status(500).json({ success: false, message: 'Error updating password', error: err });

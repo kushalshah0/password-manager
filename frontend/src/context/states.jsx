@@ -120,7 +120,15 @@ export const StatesProvider = ({ children }) => {
                 toast.success(updatedata?.message)
                 let index = allPasswordData.indexOf(prevvalue);
                 if (updatedata?.data) {
-                    allPasswordData.splice(index - 1, 0, updatedata.data);
+                    setAllPasswordData(prev => {
+                        const updatedList = [...prev];
+                        const index = updatedList.findIndex(item => item._id === prevvalue._id);
+                        if (index !== -1) {
+                            updatedList[index] = { ...updatedList[index], ...newpwddata };
+                        }
+                        return updatedList;
+                    }
+                    );
                 }
             } else {
                 toast.error(updatedata?.message)

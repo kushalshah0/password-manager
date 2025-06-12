@@ -13,9 +13,9 @@ const PasswordCard = ({ value }) => {
     });
 
     const [newPassData, setNewPassData] = useState({
-        title: "",
-        email: "",
-        password: "",
+        title: value.title,
+        email: value.email,
+        password: value.password,
     });
 
     const { allPasswordData, setAllPasswordData, Deletepassword, Updatepassword } = useContext(StatesContext);
@@ -26,13 +26,12 @@ const PasswordCard = ({ value }) => {
         setAllPasswordData(updatedPasswords);
     };
 
-
-    const handleUpdate = async (data) => {
-        await Updatepassword({ prevvalue: data, newPassData })
+    const handleUpdate = async () => {
+        await Updatepassword({ prevvalue: value, newpwddata: newPassData });
         setUpdatePass({
             id: "",
             bool: false,
-        })
+        });
     };
 
     const handleInputChange = (e) => {
@@ -69,7 +68,7 @@ const PasswordCard = ({ value }) => {
                 <input
                     type="text"
                     name="title"
-                    value={value.title}
+                    value={newPassData.title} // Bind to newPassData
                     placeholder="Title"
                     style={{ ...styles.input, minWidth: 0 }}
                     aria-label="Site Title"
@@ -79,7 +78,7 @@ const PasswordCard = ({ value }) => {
                 <input
                     type="email"
                     name="email"
-                    value={value.email}
+                    value={newPassData.email} // Bind to newPassData
                     placeholder="Email"
                     style={{ ...styles.input, minWidth: 0 }}
                     aria-label="Email"
@@ -98,7 +97,7 @@ const PasswordCard = ({ value }) => {
                     <input
                         name="password"
                         type={isPasswordVisible ? 'text' : 'password'}
-                        value={value.password}
+                        value={newPassData.password} // Bind to newPassData
                         placeholder="Password"
                         style={{
                             ...styles.input,
@@ -164,11 +163,12 @@ const PasswordCard = ({ value }) => {
                             }}
                             onClick={() => {
                                 setUpdatePass({
-                                    id: "",
+                                    id: value._id, // Set the ID of the password being edited
                                     bool: true,
                                 });
                                 setNewPassData({
                                     title: value.title,
+                                    email: value.email, // Include email in the newPassData
                                     password: value.password,
                                 });
                             }}
@@ -206,6 +206,11 @@ const PasswordCard = ({ value }) => {
                                     id: "",
                                     bool: false,
                                 });
+                                setNewPassData({
+                                    title: value.title,
+                                    email: value.email,
+                                    password: value.password,
+                                }); // Reset newPassData to original values
                             }}
                         >
                             Cancel
@@ -218,14 +223,14 @@ const PasswordCard = ({ value }) => {
                                 background: '#000',
                                 color: '#fff',
                             }}
-                            onClick={() => handleUpdate(value.password)}
+                            onClick={handleUpdate} // Call handleUpdate without parameters
                         >
                             Update
                         </button>
                     </div>
                 )}
             </div>
-        </div >
+        </div>
     );
 };
 

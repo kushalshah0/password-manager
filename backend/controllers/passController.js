@@ -27,7 +27,7 @@ module.exports = {
             }
             await newPass.save()
                 .then(pass => {
-                    res.status(201).json({ success: true, data: pass });
+                    res.status(201).json({ success: true, message: 'Saved successfully!', data: pass });
                 })
                 .catch(err => {
                     res.status(500).json({ success: false, message: 'Error saving password', error: err });
@@ -44,7 +44,7 @@ module.exports = {
                     if (!result) {
                         return res.status(404).json({ success: false, message: 'Password not found' });
                     }
-                    res.status(200).json({ success: true, message: 'Password deleted successfully' });
+                    res.status(200).json({ success: true, message: 'Deleted successfully' });
                 })
                 .catch(err => {
                     res.status(500).json({ success: false, message: 'Error deleting password', error: err });

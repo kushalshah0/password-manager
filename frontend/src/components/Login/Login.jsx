@@ -43,12 +43,17 @@ const Login = () => {
       email: emailLower,
       password
     };
+
+    const loadingToastId = toast.loading('Logging in...');
+
     try {
       const res = await axios.post(`${URL}/api/user/login`, user, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
+
+      toast.dismiss(loadingToastId);
       if (res.data.success) {
         localStorage.setItem('token', res.data.user.refreshToken);
         localStorage.setItem('userId', res.data.user._id);
@@ -65,6 +70,7 @@ const Login = () => {
         });
       }
     } catch (error) {
+      toast.dismiss(loadingToastId);
       if (error.response.data.success && error.response.status === 400) {
         navigate('/login');
       } else {

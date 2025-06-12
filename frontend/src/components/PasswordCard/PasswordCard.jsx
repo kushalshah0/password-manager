@@ -43,6 +43,14 @@ const PasswordCard = ({ value }) => {
         setIsPasswordVisible(!isPasswordVisible);
     };
 
+    const hasChanges = () => {
+        return (
+            newPassData.title !== value.title ||
+            newPassData.email !== value.email ||
+            newPassData.password !== value.password
+        );
+    };
+
     return (
         <div
             tabIndex={0}
@@ -68,7 +76,7 @@ const PasswordCard = ({ value }) => {
                 <input
                     type="text"
                     name="title"
-                    value={newPassData.title} // Bind to newPassData
+                    value={newPassData.title}
                     placeholder="Title"
                     style={{ ...styles.input, minWidth: 0 }}
                     aria-label="Site Title"
@@ -78,7 +86,7 @@ const PasswordCard = ({ value }) => {
                 <input
                     type="email"
                     name="email"
-                    value={newPassData.email} // Bind to newPassData
+                    value={newPassData.email}
                     placeholder="Email"
                     style={{ ...styles.input, minWidth: 0 }}
                     aria-label="Email"
@@ -97,11 +105,11 @@ const PasswordCard = ({ value }) => {
                     <input
                         name="password"
                         type={isPasswordVisible ? 'text' : 'password'}
-                        value={newPassData.password} // Bind to newPassData
+                        value={newPassData.password}
                         placeholder="Password"
                         style={{
                             ...styles.input,
-                            paddingRight: '2.5rem', // space for eye icon
+                            paddingRight: '2.5rem',
                             flex: 1,
                             minWidth: 0,
                         }}
@@ -128,7 +136,7 @@ const PasswordCard = ({ value }) => {
                             padding: 0,
                             height: '100%',
                         }}
-                        tabIndex={-1} // Remove from tab order, input gets focus
+                        tabIndex={-1}
                     >
                         {isPasswordVisible ? <FaEyeSlash /> : <FaEye />}
                     </button>
@@ -163,12 +171,12 @@ const PasswordCard = ({ value }) => {
                             }}
                             onClick={() => {
                                 setUpdatePass({
-                                    id: value._id, // Set the ID of the password being edited
+                                    id: value._id,
                                     bool: true,
                                 });
                                 setNewPassData({
                                     title: value.title,
-                                    email: value.email, // Include email in the newPassData
+                                    email: value.email,
                                     password: value.password,
                                 });
                             }}
@@ -210,7 +218,7 @@ const PasswordCard = ({ value }) => {
                                     title: value.title,
                                     email: value.email,
                                     password: value.password,
-                                }); // Reset newPassData to original values
+                                });
                             }}
                         >
                             Cancel
@@ -220,10 +228,11 @@ const PasswordCard = ({ value }) => {
                             aria-label="Update password card"
                             style={{
                                 ...styles.cardBtn,
-                                background: '#000',
+                                background: hasChanges() ? '#000' : '#555555',
                                 color: '#fff',
                             }}
-                            onClick={handleUpdate} // Call handleUpdate without parameters
+                            onClick={handleUpdate}
+                            disabled={!hasChanges()} // Disable if no changes
                         >
                             Update
                         </button>

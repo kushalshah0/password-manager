@@ -25,11 +25,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <Toaster toastOptions={{
-        iconTheme: {
-          primary: '#000',
-        }
-      }} />
+      <Toaster />
     </>
   )
 }

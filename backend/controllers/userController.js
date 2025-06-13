@@ -41,7 +41,7 @@ module.exports = {
             const hashedPassword = await bcrypt.hash(password, 10);
             const newUser = new User({ name, email, password: hashedPassword });
             await newUser.save();
-            const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '5m' });
             if (!token) {
                 return res.status(500).json({ success: false, message: 'Token generation failed' });
             }

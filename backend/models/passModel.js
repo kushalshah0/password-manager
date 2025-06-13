@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const passSchema = new mongoose.Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true,
     },
     title: {
         type: String,

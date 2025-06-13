@@ -42,7 +42,6 @@ export const StatesProvider = ({ children }) => {
     };
 
     const Postpassword = async (data) => {
-        console.log(data);
         try {
             const res = await axios.post(
                 `${URL}/api/pass`,
@@ -101,7 +100,6 @@ export const StatesProvider = ({ children }) => {
     };
 
     const Updatepassword = async ({ prevvalue, newpwddata }) => {
-        console.log(prevvalue, newpwddata);
         try {
             const res = await axios.put(
                 `${URL}/api/pass/${prevvalue?._id}`,

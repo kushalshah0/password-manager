@@ -2,7 +2,7 @@ const Pass = require('../models/passModel');
 module.exports = {
     getPass: async (req, res) => {
         try {
-            const userId = req.user._id;
+            const userId = req.user.id;
             await Pass.find({ author: userId })
                 .then(passes => {
                     res.status(200).json({ success: true, data: passes });
@@ -20,7 +20,7 @@ module.exports = {
             if (!title || !email || !password) {
                 return res.status(400).json({ success: false, message: 'Please fill all the fields!' });
             }
-            const userId = req.user._id;
+            const userId = req.user.id;
             const newPass = new Pass({ author: userId, title, email, password });
             if (!newPass) {
                 return res.status(400).json({ success: false, message: 'Password creation failed' });

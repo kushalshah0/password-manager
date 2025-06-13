@@ -7,6 +7,7 @@ import AddPassword from '../PasswordCard/AddPassword';
 const Dashboard = () => {
   const { user, showAddPassword, allPasswordData, Getpassword } = useContext(StatesContext);
   useEffect(() => {
+    
     Getpassword();
   }, []);
 

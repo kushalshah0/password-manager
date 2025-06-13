@@ -9,7 +9,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 
 const Navbar = () => {
-  const { URL, view, setView, user, setUser, formState, setFormState, errors, setErrors, showAddPassword, setShowAddPassword } = useContext(StatesContext);
+  const { URL, view, setView, user, setUser, formState, setFormState, errors, setErrors, showAddPassword, setShowAddPassword, setAllPasswordData } = useContext(StatesContext);
 
   const handleAddClick = () => {
     setShowAddPassword(!showAddPassword);
@@ -35,6 +35,8 @@ const Navbar = () => {
         setView('login');
         setFormState({});
         setErrors({});
+        setAllPasswordData([]);
+        setShowAddPassword(false);
         toast.success(response.data.message);
       } else {
         console.error('Logout failed:', response.data.message);

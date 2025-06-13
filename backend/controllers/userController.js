@@ -16,7 +16,7 @@ module.exports = {
             if (!isPasswordValid) {
                 return res.status(400).json({ success: false, message: 'Invalid password' });
             }
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '5m' });
             if (!token) {
                 return res.status(500).json({ success: false, message: 'Token generation failed' });
             }

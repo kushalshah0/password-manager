@@ -10,8 +10,13 @@ const passRoute = require('./routes/passRoute');
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/user',userRoute);
-app.use('/api/pass',passRoute);
+app.use('/api/user', userRoute);
+app.use('/api/pass', passRoute);
+
+app.get('/', (req, res) => {
+  res.status(401).json({ message: 'Unauthorized' });
+}
+);
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
   console.log('Connected to MongoDB');

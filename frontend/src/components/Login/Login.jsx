@@ -56,7 +56,7 @@ const Login = () => {
       toast.dismiss(loadingToastId);
       if (res.data.success) {
         localStorage.setItem('token', res.data.user.refreshToken);
-        localStorage.setItem('userId', res.data.user._id);
+        localStorage.setItem('name', res.data.user.name.split(' ')[0]);
         setUser({
           name: res.data.user.name,
         });

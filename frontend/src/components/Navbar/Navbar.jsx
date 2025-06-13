@@ -21,9 +21,8 @@ const Navbar = () => {
   }
 
   const handleLogout = async () => {
-    const userId = localStorage.getItem('userId');
     try {
-      const response = await axios.post(`${URL}/api/user/logout`, { userId: userId }, {
+      const response = await axios.get(`${URL}/api/user/logout`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`,

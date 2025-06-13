@@ -53,7 +53,7 @@ module.exports = {
         }
     },
     logoutUser: async (req, res) => {
-        const userId = req.body.userId ;
+        const userId = req.user.id;
         try {
             await User.findByIdAndUpdate(
                 { _id: userId },

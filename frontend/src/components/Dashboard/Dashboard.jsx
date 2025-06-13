@@ -7,14 +7,15 @@ import AddPassword from '../PasswordCard/AddPassword';
 const Dashboard = () => {
   const { user, showAddPassword, allPasswordData, Getpassword } = useContext(StatesContext);
   useEffect(() => {
-    
     Getpassword();
   }, []);
+
+  const name = localStorage.getItem('name') || 'User';
 
   return (
     <section aria-label="Dashboard" style={styles.dashboard}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-        <h1 style={styles.greeting}>Hello {user.name.split(' ')[0]} !</h1>
+        <h1 style={styles.greeting}>Hello {name} !</h1>
       </div>
 
       {showAddPassword && (

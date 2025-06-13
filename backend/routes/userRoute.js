@@ -7,6 +7,6 @@ route.post('/login', loginUser);
 
 route.post('/signup', signupUser);
 
-route.post('/logout', auth, logoutUser);
+route.get('/logout', auth, logoutUser);
 
 module.exports = route;

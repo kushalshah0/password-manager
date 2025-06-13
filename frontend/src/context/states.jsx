@@ -17,6 +17,7 @@ export const StatesProvider = ({ children }) => {
     const [formState, setFormState] = useState({});
     const [errors, setErrors] = useState({});
     const [showAddPassword, setShowAddPassword] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const Getpassword = async () => {
         try {
@@ -138,7 +139,7 @@ export const StatesProvider = ({ children }) => {
     };
 
     return (
-        <StatesContext.Provider value={{ URL, view, setView, user, setUser, formState, setFormState, errors, setErrors, showAddPassword, setShowAddPassword, allPasswordData, setAllPasswordData, passwordData, setPasswordData, Getpassword, Postpassword, Deletepassword, Updatepassword }}>
+        <StatesContext.Provider value={{ URL, view, setView, user, setUser, formState, setFormState, errors, setErrors, showAddPassword, setShowAddPassword, allPasswordData, setAllPasswordData, passwordData, setPasswordData, Getpassword, Postpassword, Deletepassword, Updatepassword, loading, setLoading }}>
             {children}
         </StatesContext.Provider>
     );

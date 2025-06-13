@@ -11,11 +11,9 @@ import { jwtDecode } from 'jwt-decode';
 
 function App() {
   const navigate = useNavigate();
-  const { setView } = useContext(StatesContext);
-  const [loading, setLoading] = useState(false);
+  const { setView, loading, setLoading } = useContext(StatesContext);
 
   useEffect(() => {
-    setLoading(true);
     const token = localStorage.getItem('token');
     if (!token) {
       setLoading(false);
@@ -42,7 +40,10 @@ function App() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+      </>
+    );
   }
 
   const router = createBrowserRouter([

@@ -60,7 +60,7 @@ const PasswordCard = ({ value }) => {
         navigator.clipboard.writeText(newPassData.password);
         toast.success('Password copied!');
         setCopyActive(true);
-        setTimeout(() => setCopyActive(false), 250); // highlight duration 500ms
+        setTimeout(() => setCopyActive(false), 250);
     };
 
     return (
@@ -278,7 +278,7 @@ const PasswordCard = ({ value }) => {
                                 color: '#fff',
                             }}
                             onClick={handleUpdate}
-                            disabled={!hasChanges()} // Disable if no changes
+                            disabled={!hasChanges()}
                         >
                             Update
                         </button>

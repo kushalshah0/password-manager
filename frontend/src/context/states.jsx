@@ -103,12 +103,7 @@ export const StatesProvider = ({ children }) => {
             } else {
                 toast.error(deletdata?.message);
             }
-        } catch (error) {
-            toast.error(error?.response?.data?.message);
-            setTimeout(() => {
-                window.location.href = '/login';
-            }, 1000);
-        }
+        } catch (error) {}
     };
 
     const Updatepassword = async ({ prevvalue, newpwddata }) => {

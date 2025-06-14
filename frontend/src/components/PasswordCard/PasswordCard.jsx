@@ -114,7 +114,7 @@ const PasswordCard = ({ value }) => {
                 >
                     <input
                         name="password"
-                        type={isPasswordVisible ? 'text' : 'password'}
+                        type={(isPasswordVisible || updatePass.bool) ? 'text' : 'password'}
                         value={newPassData.password}
                         placeholder="Password"
                         style={{
@@ -140,12 +140,13 @@ const PasswordCard = ({ value }) => {
                             cursor: 'pointer',
                             color: '#6b7280',
                             fontSize: '1.1rem',
+                            padding: 0,
+                            height: '100%',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            padding: 0,
-                            height: '100%',
-                            transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease',
+                            opacity: updatePass.bool ? 0 : 1,
+                            transition: 'opacity 0.1s ease, transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)',
                             transform: copyActive ? 'scale(1.15)' : 'scale(1)',
                         }}
                         tabIndex={-1}
@@ -170,6 +171,8 @@ const PasswordCard = ({ value }) => {
                             justifyContent: 'center',
                             padding: 0,
                             height: '100%',
+                            opacity: updatePass.bool ? 0 : 1,
+                            transition: 'opacity 0.1s ease, transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)',
                         }}
                         tabIndex={-1}
                     >
@@ -239,7 +242,13 @@ const PasswordCard = ({ value }) => {
                         </button>
                     </>
                 ) : (
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <div style={{
+                        display: 'flex',
+                        gap: '0.5rem',
+                        opacity: updatePass ? 1 : 0,
+                        pointerEvents: updatePass ? 'auto' : 'none',
+                        transition: 'opacity 0.3s ease-in-out',
+                    }}>
                         <button
                             type="button"
                             aria-label="Cancel password card"

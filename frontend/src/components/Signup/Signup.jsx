@@ -58,27 +58,30 @@ const Signup = () => {
       email: emailLower,
       password
     };
-    await axios.post(`${URL}/api/user/signup`, newUser, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => {
-        if (res.data.success) {
-          toast.success(res.data.message);
-          setView('login');
-          navigate('/login');
-          setFormState({});
-        }
-      })
-      .catch((error) => {
-        setErrors(error.response.data.message);
-        if (error.response.data.success === false) {
-          toast.error('Email already exists.');
-        } else {
-          setErrors({ general: 'An error occurred. Please try again later.' });
-        }
+
+    const loadingToastId = toast.loading('Signing up...');
+    try {
+      const res = await axios.post(`${URL}/api/user/signup`, newUser, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
+      toast.dismiss(loadingToastId);
+      if (res.data.success) {
+        toast.success(res.data.message);
+        setView('login');
+        navigate('/login');
+        setFormState({});
+      }
+    }
+    catch (error) {
+      toast.dismiss(loadingToastId);
+      if (error.response.data.success === false) {
+        toast.error(error.response.data.message);
+      } else {
+        setErrors({ general: 'An error occurred. Please try again later.' });
+      }
+    }
   }
 
 

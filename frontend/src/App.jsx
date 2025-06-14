@@ -37,7 +37,7 @@ function App() {
       setLoading(false);
       navigate('/login');
     }
-  }, []);
+  }, [navigate, setLoading, setView]);
 
   if (loading) {
     return (

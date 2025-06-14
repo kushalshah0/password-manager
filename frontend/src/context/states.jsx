@@ -104,14 +104,14 @@ export const StatesProvider = ({ children }) => {
                 }
             );
 
-            let deletdata = res?.data;
+            let deletedata = res?.data;
 
-            if (deletdata?.success) {
-                toast.success(deletdata?.message)
-                let newdata = allPasswordData?.filter((value) => value?._id !== pwid);
+            if (deletedata?.success) {
+                toast.success(deletedata?.message);
+                const newdata = allPasswordData?.filter((value) => value?._id !== id);
                 setAllPasswordData(newdata);
             } else {
-                toast.error(deletdata?.message);
+                toast.error(deletedata?.message);
             }
         } catch (error) {
             if (error?.response?.data?.token === false) {

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { styles } from '../../styles/style';
 import { FaEye, FaEyeSlash, FaEdit, FaTrash } from 'react-icons/fa';
+import { MdContentCopy } from "react-icons/md";
 import { StatesContext } from '../../context/states';
 import { toast } from 'react-hot-toast';
 
@@ -49,6 +50,15 @@ const PasswordCard = ({ value }) => {
             newPassData.email !== value.email ||
             newPassData.password !== value.password
         );
+    };
+
+    const [copyActive, setCopyActive] = useState(false);
+    const handleCopyClick = () => {
+        if (!newPassData.password) return;
+        navigator.clipboard.writeText(newPassData.password);
+        toast.success('Password copied!');
+        setCopyActive(true);
+        setTimeout(() => setCopyActive(false), 250); // highlight duration 500ms
     };
 
     return (
@@ -119,12 +129,37 @@ const PasswordCard = ({ value }) => {
                     />
                     <button
                         type="button"
+                        onClick={handleCopyClick}
+                        aria-label="Copy password"
+                        style={{
+                            WebkitTapHighlightColor: 'transparent',
+                            position: 'absolute',
+                            right: '0.5rem',
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            color: '#6b7280',
+                            fontSize: '1.1rem',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: 0,
+                            height: '100%',
+                            transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease',
+                            transform: copyActive ? 'scale(1.15)' : 'scale(1)',
+                        }}
+                        tabIndex={-1}
+                    >
+                        <MdContentCopy />
+                    </button>
+                    <button
+                        type="button"
                         onClick={togglePasswordVisibility}
                         aria-label={isPasswordVisible ? 'Hide password' : 'Show password'}
                         style={{
                             WebkitTapHighlightColor: 'transparent',
                             position: 'absolute',
-                            right: '0.5rem',
+                            right: '2.31rem',
                             background: 'none',
                             border: 'none',
                             cursor: 'pointer',

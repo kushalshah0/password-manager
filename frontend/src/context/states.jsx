@@ -40,10 +40,15 @@ export const StatesProvider = ({ children }) => {
                 toast.error(getdata?.message);
             }
         } catch (error) {
-            toast.error(error?.response?.data?.message);
-            setTimeout(() => {
-                window.location.href = '/login';
-            }, 1000);
+            if (error?.response?.data?.token === false) {
+                toast.error("Session expired!");
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 1000);
+            }
+            else {
+                toast.error(error?.response?.data?.message);
+            }
         }
     };
 
@@ -75,10 +80,15 @@ export const StatesProvider = ({ children }) => {
                 toast.error(postdata?.message);
             }
         } catch (error) {
-            toast.error(error?.response?.data?.message);
-            setTimeout(() => {
-                window.location.href = '/login';
-            }, 1000);
+            if (error?.response?.data?.token === false) {
+                toast.error("Session expired!");
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 1000);
+            }
+            else {
+                toast.error(error?.response?.data?.message);
+            }
         }
     };
 
@@ -103,7 +113,17 @@ export const StatesProvider = ({ children }) => {
             } else {
                 toast.error(deletdata?.message);
             }
-        } catch (error) {}
+        } catch (error) {
+            if (error?.response?.data?.token === false) {
+                toast.error("Session expired!");
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 1000);
+            }
+            else {
+                toast.error(error?.response?.data?.message);
+            }
+        }
     };
 
     const Updatepassword = async ({ prevvalue, newpwddata }) => {
@@ -139,10 +159,15 @@ export const StatesProvider = ({ children }) => {
                 toast.error(updatedata?.message);
             }
         } catch (error) {
-            toast.error(error?.response?.data?.message);
-            setTimeout(() => {
-                window.location.href = '/login';
-            }, 1000);
+            if (error?.response?.data?.token === false) {
+                toast.error("Session expired!");
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 1000);
+            }
+            else {
+                toast.error(error?.response?.data?.message);
+            }
         }
     };
 

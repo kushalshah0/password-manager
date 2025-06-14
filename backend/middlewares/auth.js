@@ -10,7 +10,7 @@ module.exports = {
             req.user = decoded;
             next();
         } catch (error) {
-            return res.status(403).json({ success: false, message: 'Invalid token' });
+            return res.status(403).json({ success: false, token: false, message: 'Invalid token' });
         }
     }
 };

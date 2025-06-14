@@ -22,6 +22,8 @@ const PasswordCard = ({ value }) => {
     const { allPasswordData, setAllPasswordData, Deletepassword, Updatepassword } = useContext(StatesContext);
 
     const handleDelete = async (id) => {
+        const confirmed = window.confirm("Do you want to delete this password?");
+        if (!confirmed) return;
         await Deletepassword(id);
         const updatedPasswords = allPasswordData.filter(password => password._id !== id);
         setAllPasswordData(updatedPasswords);

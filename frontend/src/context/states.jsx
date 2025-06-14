@@ -39,7 +39,12 @@ export const StatesProvider = ({ children }) => {
             } else {
                 toast.error(getdata?.message);
             }
-        } catch (error) { }
+        } catch (error) {
+            toast.error(error?.response?.data?.message);
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 1000);
+        }
     };
 
     const Postpassword = async (data) => {
@@ -67,10 +72,13 @@ export const StatesProvider = ({ children }) => {
                 });
                 setShowAddPassword(false);
             } else {
-                toast.error(postdata?.message)
+                toast.error(postdata?.message);
             }
         } catch (error) {
             toast.error(error?.response?.data?.message);
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 1000);
         }
     };
 
@@ -89,15 +97,18 @@ export const StatesProvider = ({ children }) => {
             let deletdata = res?.data;
 
             if (deletdata?.success) {
-
                 toast.success(deletdata?.message)
                 let newdata = allPasswordData?.filter((value) => value?._id !== pwid);
                 setAllPasswordData(newdata);
             } else {
-                toast.error(deletdata?.message)
-
+                toast.error(deletdata?.message);
             }
-        } catch (error) { }
+        } catch (error) {
+            toast.error(error?.response?.data?.message);
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 1000);
+        }
     };
 
     const Updatepassword = async ({ prevvalue, newpwddata }) => {
@@ -130,11 +141,13 @@ export const StatesProvider = ({ children }) => {
                     );
                 }
             } else {
-                toast.error(updatedata?.message)
+                toast.error(updatedata?.message);
             }
         } catch (error) {
-            console.log(error);
-
+            toast.error(error?.response?.data?.message);
+            setTimeout(() => {
+                window.location.href = '/login';
+            }, 1000);
         }
     };
 

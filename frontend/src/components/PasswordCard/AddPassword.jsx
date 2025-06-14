@@ -29,7 +29,7 @@ const AddPassword = () => {
 
     return (
         <div style={styles.modalOverlay}>
-            <form style={styles.addCard} aria-label="Add new password" noValidate>
+            <form style={styles.addCard} aria-label="Add new password" noValidate onSubmit={handleSubmit}>
                 <h2 style={styles.addCardH2}>Add New Password</h2>
                 <label style={styles.addCardLabel} htmlFor="title">
                     Title
@@ -59,12 +59,11 @@ const AddPassword = () => {
                         Cancel
                     </button>
                     <button
-                        type="button"
+                        type="submit"
                         aria-label="Update password card"
                         style={{
                             ...styles.addCardButton,
                         }}
-                        onClick={handleSubmit}
                     >
                         Add
                     </button>

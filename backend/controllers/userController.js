@@ -59,7 +59,7 @@ module.exports = {
                 { _id: userId },
                 {
                     $set: {
-                        refreshtoken: null,
+                        refreshToken: null,
                     },
                 }
             );

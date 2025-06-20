@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash, FaEdit, FaTrash } from 'react-icons/fa';
 import { MdContentCopy } from "react-icons/md";
 import { StatesContext } from '../../context/states';
 import { toast } from 'react-hot-toast';
+import moment from 'moment';
 
 const PasswordCard = ({ value }) => {
     const [hovered, setHovered] = useState(false);
@@ -14,6 +15,7 @@ const PasswordCard = ({ value }) => {
     });
 
     const [newPassData, setNewPassData] = useState({
+        updatedAt: value.updatedAt,
         title: value.title,
         email: value.email,
         password: value.password,
@@ -191,10 +193,24 @@ const PasswordCard = ({ value }) => {
                     width: '100%',
                     marginTop: '0.5rem',
                     minHeight: '35px',
+                    opacity: updatePass ? 1 : 0,
+                    pointerEvents: updatePass ? 'auto' : 'none',
+                    transition: 'opacity 0.3s ease-in-out',
                 }}
             >
                 {!updatePass.bool ? (
                     <>
+                        <p style={{
+                            color: '#6b7280',
+                            fontSize: '0.9rem',
+                            margin: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            marginRight: '0.5rem',
+                        }}>
+                            Edited - <span>{moment(newPassData.updatedAt).fromNow()}</span>
+                        </p>
                         <button
                             type="button"
                             aria-label="Edit password card"
@@ -270,7 +286,7 @@ const PasswordCard = ({ value }) => {
                             Cancel
                         </button>
                         <button
-                            type="button"
+                            type="submit"
                             aria-label="Update password card"
                             style={{
                                 ...styles.cardBtn,

@@ -85,6 +85,7 @@ export const StatesProvider = ({ children }) => {
                 setTimeout(() => {
                     window.location.href = '/login';
                 }, 1000);
+                localStorage.clear();
             }
             else {
                 toast.error(error?.response?.data?.message);
@@ -119,6 +120,7 @@ export const StatesProvider = ({ children }) => {
                 setTimeout(() => {
                     window.location.href = '/login';
                 }, 1000);
+                localStorage.clear();
             }
             else {
                 toast.error(error?.response?.data?.message);
@@ -164,6 +166,7 @@ export const StatesProvider = ({ children }) => {
                 setTimeout(() => {
                     window.location.href = '/login';
                 }, 1000);
+                localStorage.clear();
             }
             else {
                 toast.error(error?.response?.data?.message);
